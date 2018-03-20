@@ -53,23 +53,14 @@ public class Laboratorio1Ejercicio3 {
         for(int a=0; a<10; a++){
             viajes[a]= new Viaje(fechas[a],0,reservas[a],reservas2[a]);
         }
-
-        
-//        Date fechas= new Date(1,1,1);
-//        Date fechas2= new Date(1,1,1); 
-//        Date fechas3= new Date(1,1,1); 
-//        Date fechas4= new Date(1,1,1); 
-//        Reserva reservas= new Reserva(fechas, fechas2, 0);
-//        Reserva reservas2= new Reserva(fechas3, fechas4, 0);
-//        Aeropuerto aeropuertos= new Aeropuerto("a");
-//        Aeropuerto aeropuertos2= new Aeropuerto("b");
-//        Hotel hoteles= new Hotel("a", "a");
-//        Viaje viajes= new Viaje(fechas,0, reservas,reservas2);
         
         Scanner sc= new Scanner(System.in);
         System.out.println("Nombre de la Agencia: ");
         String agencia= sc.nextLine();
         AgenciaDeViajes Agencia= new AgenciaDeViajes(agencia);
+//        for(int a=0;a<10;a++){
+//            Agencia.AñadirViaje(viajes[a]);
+//        }
         int a=1;
         int b=0;
         while(a==1){
@@ -157,6 +148,7 @@ public class Laboratorio1Ejercicio3 {
                 
 
                 Agencia.AñadirViaje(viajes[b]);
+                b++;
                 break;
             case 2:
                 //Mostrar viajes;
@@ -164,11 +156,13 @@ public class Laboratorio1Ejercicio3 {
                 break;
             case 3:
                 //Viaje de menor duracion
-                Agencia.MenorDuracion();
+                int menor=Agencia.MenorDuracion();
+                System.out.println("El viaje de menor duración es: "+ menor);
                 break;
             case 4:
                 //Viaje de mayor duracion
-                Agencia.MayorDuracion();
+                int mayor=Agencia.MayorDuracion();
+                System.out.println("El viaje de menor duración es: "+ mayor);
                 break;
                 
             default:
@@ -176,7 +170,6 @@ public class Laboratorio1Ejercicio3 {
         }
         System.out.println("Desea continuar operando? Si(1) No (0)");
         a= sc.nextInt();
-        b++;
         c=0;
         d=0;
         }
