@@ -4,25 +4,21 @@
  * and open the template in the editor.
  */
 package laboratorio1ejercicio3;
-
+import java.util.ArrayList;
 /**
  *
  * @author User
  */
 public class AgenciaDeViajes {
     private String nombre;
-    private Viaje []ofrecidos;
+    private ArrayList <Viaje> ofrecidos;
     private Aeropuerto[] aeropuertos;
     private Hotel[] conocidos;
     public AgenciaDeViajes(String nombre) {
         this.nombre = nombre;
-        this.ofrecidos= new Viaje[10];
+        this.ofrecidos= new ArrayList();
         this.aeropuertos= new Aeropuerto[4];
         this.conocidos= new Hotel[5];
-    }
-
-    public Viaje[] getOfrecidos() {
-        return ofrecidos;
     }
 
     public Aeropuerto[] getAeropuertos() {
@@ -31,10 +27,6 @@ public class AgenciaDeViajes {
 
     public Hotel[] getConocidos() {
         return conocidos;
-    }
-
-    public void setOfrecidos(Viaje[] ofrecidos) {
-        this.ofrecidos = ofrecidos;
     }
 
     public void setAeropuertos(Aeropuerto[] aeropuertos) {
@@ -56,12 +48,7 @@ public class AgenciaDeViajes {
     }
 
     public boolean AñadirViaje(Viaje viaje){
-        for(int a=0; a<10; a++){
-            if(ofrecidos[a]==null){
-                this.ofrecidos[a]= viaje;
-                return true;
-            }
-        }
+            ofrecidos.add(viaje);
         return false;
     }
     
@@ -100,59 +87,56 @@ public class AgenciaDeViajes {
     
     public void MostrarViajes(){
         System.out.println("La agencia de viajes "+ this.nombre +" le ofrece los siguientes viajes:");
-        for(int a=0; a<10; a++){
-            if(ofrecidos[a]!= null){
+        for(Viaje viaje: ofrecidos){
+            int a=1;
+            if(viaje!= null){
                 System.out.println("Los datos del viaje numero "+ (a+1) + " son: ");
-                System.out.println("Hotel "+ ofrecidos[a].getHotel().getNombre() + ", Dirección "+ ofrecidos[a].getHotel().getDireccion());
-                System.out.println("Fecha de partida: "+ ofrecidos[a].getFecha().getDia() + "/" + ofrecidos[a].getFecha().getMes() +"/"+ ofrecidos[a].getFecha().getAnnio());
-                System.out.println("Duración del vuelo: " + ofrecidos[a].getDuracion());
-                System.out.println("Desde el aeropuerto: "+ ofrecidos[a].getIda().getDe().getNombre() + " Numero de vuelo: "+ ofrecidos[a].getIda().getNoVuelo());
-                System.out.println("Hacia el aeropuerto: "+ ofrecidos[a].getIda().getHacia().getNombre());
-                System.out.println("Fecha de regreso: "+ ofrecidos[a].getRegreso().getPartida().getDia() +"/"+ ofrecidos[a].getRegreso().getPartida().getMes() +"/"+ ofrecidos[a].getRegreso().getPartida().getAnnio());
-                System.out.println("Numero de vuelo: "+ ofrecidos[a].getRegreso().getNoVuelo());
+                System.out.println("Hotel "+ viaje.getHotel().getNombre() + ", Dirección "+ viaje.getHotel().getDireccion());
+                System.out.println("Fecha de partida: "+ viaje.getFecha().getDia() + "/" + viaje.getFecha().getMes() +"/"+ viaje.getFecha().getAnnio());
+                System.out.println("Duración del vuelo: " + viaje.getDuracion());
+                System.out.println("Desde el aeropuerto: "+ viaje.getIda().getDe().getNombre() + " Numero de vuelo: "+ viaje.getIda().getNoVuelo());
+                System.out.println("Hacia el aeropuerto: "+ viaje.getIda().getHacia().getNombre());
+                System.out.println("Fecha de regreso: "+ viaje.getRegreso().getPartida().getDia() +"/"+ viaje.getRegreso().getPartida().getMes() +"/"+ viaje.getRegreso().getPartida().getAnnio());
+                System.out.println("Numero de vuelo: "+ viaje.getRegreso().getNoVuelo());
                 System.out.println("----------------------------------------------------------------------");
             }
-            else
-                break;
+            else{
+                break;}
+            a++;
+            
+            
         }
         
     }
     
-    public void MenorDuracion(){
+    public int MenorDuracion(){
         int menor= 0;
-        for(int a=0; a<10; a++){
+        for(Viaje viaje:ofrecidos){
+            int c= viaje.getDuracion();
             if(menor==0){
-                menor= ofrecidos[a].getDuracion();
+                menor= c;
             }
             else{
-                if(ofrecidos[a].getDuracion() < menor){
-                    menor= ofrecidos[a].getDuracion();
+                if(c < menor){
+                    menor= c;
                 }
             }
         }
-        if( menor==0){
-            System.out.println("operacion Fallida");
-        }
-        else
-            System.out.println("El viaje de menor duración es: "+ menor);
+            return menor;
     }
 
-    public void MayorDuracion(){
+    public int MayorDuracion(){
         int mayor= 0;
-        for(int a=0; a<10; a++){
+        for(Viaje viaje:ofrecidos){
             if(mayor==0){
-                mayor= ofrecidos[a].getDuracion();
+                mayor= viaje.getDuracion();
             }
             else{
-                if(ofrecidos[a].getDuracion() > mayor){
-                    mayor= ofrecidos[a].getDuracion();
+                if(viaje.getDuracion() > mayor){
+                    mayor= viaje.getDuracion();
                 }
             }
         }
-        if(mayor==0){
-            System.out.println("operacion Fallida");
-        }
-        else
-        System.out.println("El viaje de menor duración es: "+ mayor);
+        return mayor;
     }
 }
